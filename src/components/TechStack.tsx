@@ -46,7 +46,7 @@ const getImagePaths = (name: string) => {
     "jenkins": "jenkins.svg",
     "gitlab": "Gitlab.png"
   };
-  return `/images/${fileMappings[name] || "javascript.webp"}`;
+  return `${import.meta.env.BASE_URL}images/${fileMappings[name] || "javascript.webp"}`;
 }
 
 const textures = techNames.map((name) => textureLoader.load(getImagePaths(name)));
@@ -226,7 +226,7 @@ const TechStack = () => {
           ))}
         </Physics>
         <Environment
-          files="/models/char_enviorment.hdr"
+          files={`${import.meta.env.BASE_URL}models/char_enviorment.hdr`}
           environmentIntensity={0.5}
           environmentRotation={[0, 4, 2]}
         />
