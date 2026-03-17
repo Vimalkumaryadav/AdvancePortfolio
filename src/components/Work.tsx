@@ -3,36 +3,38 @@ import "./styles/Work.css";
 import WorkImage from "./WorkImage";
 import { MdArrowBack, MdArrowForward } from "react-icons/md";
 
+const BASE = import.meta.env.BASE_URL;
+
 const projects = [
   {
     title: "EA Help NXGEN",
     category: "Manual & Automation Testing",
     tools: "Playwright, Postman, Swagger, Gitlab, Jira",
-    image: "/images/EAHELPWEBSITE.jpg",
+    image: `${BASE}images/EAHELPWEBSITE.jpg`,
   },
   {
     title: "EA HELP AI Chatbots",
     category: "AI Evaluation and Load Testing",
     tools: "Playwright, Gatling, Argo logs, Grafana, DataBase, Gitlab",
-    image: "/images/AIBots.jpg",
+    image: `${BASE}images/AIBots.jpg`,
   },
   {
     title: "POGO",
     category: "Regression Suite",
     tools: "WebDriverIO, Jenkins, Copilot, Perforce",
-    image: "/images/POGO.jpg",
+    image: `${BASE}images/POGO.jpg`,
   },
   {
     title: "Auspost",
     category: "API Testing",
     tools: "Rest Assured, Selenium, Postman, Bitbucket, PractiTest",
-    image: "/images/AUSPOST.jpg",
+    image: `${BASE}images/AUSPOST.jpg`,
   },
   {
     title: "AccuConnect",
     category: "UI Testing",
     tools: "Selenium (Java), Cucumber BDD, Maven, Extend Reports",
-    image: "/images/ACCUCONNECT.jpg ",
+    image: `${BASE}images/ACCUCONNECT.jpg`,
   },
 ];
 
