@@ -10,28 +10,54 @@ const Loading = ({ percent }: { percent: number }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [clicked, setClicked] = useState(false);
 
-  if (percent >= 100) {
-    setTimeout(() => {
+  useEffect(() => {
+    if (percent < 100 || loaded) return;
+    // Short exit animation — keep total loader under a few seconds
+    const t1 = setTimeout(() => {
       setLoaded(true);
-      setTimeout(() => {
-        setIsLoaded(true);
-      }, 1000);
-    }, 600);
-  }
+      setTimeout(() => setIsLoaded(true), 280);
+    }, 180);
+    return () => clearTimeout(t1);
+  }, [percent, loaded]);
+
+  // Hard cap: never keep the loader longer than ~5s from mount
+  useEffect(() => {
+    const failsafe = setTimeout(() => {
+      setLoaded(true);
+      setIsLoaded(true);
+    }, 4500);
+    return () => clearTimeout(failsafe);
+  }, []);
 
   useEffect(() => {
-    import("./utils/initialFX").then((module) => {
-      if (isLoaded) {
+    if (!isLoaded) return;
+    let cancelled = false;
+    import("./utils/initialFX")
+      .then((module) => {
+        if (cancelled) return;
         setClicked(true);
         setTimeout(() => {
-          if (module.initialFX) {
-            module.initialFX();
+          try {
+            module.initialFX?.();
+          } catch (err) {
+            console.error("initialFX failed, unlocking page anyway:", err);
+            document.body.style.overflowY = "auto";
+            document.getElementsByTagName("main")[0]?.classList.add("main-active");
           }
           setIsLoading(false);
-        }, 900);
-      }
-    });
-  }, [isLoaded]);
+        }, 220);
+      })
+      .catch((err) => {
+        console.error("Failed to load initialFX:", err);
+        setClicked(true);
+        document.body.style.overflowY = "auto";
+        document.getElementsByTagName("main")[0]?.classList.add("main-active");
+        setIsLoading(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [isLoaded, setIsLoading]);
 
   function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
     const { currentTarget: target } = e;
@@ -45,7 +71,12 @@ const Loading = ({ percent }: { percent: number }) => {
   return (
     <>
       <div className="loading-header">
-        <a href="/#" className="loader-title" data-cursor="disable">
+        <a
+          href={import.meta.env.BASE_URL}
+          className="loader-title"
+          data-cursor="disable"
+          onClick={(e) => e.preventDefault()}
+        >
           VKY
         </a>
         <div className={`loaderGame ${clicked && "loader-out"}`}>
@@ -93,43 +124,51 @@ const Loading = ({ percent }: { percent: number }) => {
 export default Loading;
 
 export const setProgress = (setLoading: (value: number) => void) => {
-  let percent: number = 0;
+  let percent = 0;
+  let done = false;
+  let interval: ReturnType<typeof setInterval> | undefined;
 
-  let interval = setInterval(() => {
-    if (percent <= 50) {
-      let rand = Math.round(Math.random() * 5);
-      percent = percent + rand;
-      setLoading(percent);
-    } else {
-      clearInterval(interval);
-      interval = setInterval(() => {
-        percent = percent + Math.round(Math.random());
-        setLoading(percent);
-        if (percent > 91) {
-          clearInterval(interval);
-        }
-      }, 2000);
+  // Steady climb to ~90% in ~2s while assets load — no multi-second stalls
+  interval = setInterval(() => {
+    if (done) {
+      if (interval) clearInterval(interval);
+      return;
     }
-  }, 100);
+    if (percent < 90) {
+      percent = Math.min(90, percent + 4 + Math.round(Math.random() * 4));
+      setLoading(percent);
+    } else if (interval) {
+      clearInterval(interval);
+      interval = undefined;
+    }
+  }, 80);
+
+  function destroy() {
+    done = true;
+    if (interval) clearInterval(interval);
+  }
 
   function clear() {
-    clearInterval(interval);
+    destroy();
+    percent = 100;
     setLoading(100);
   }
 
   function loaded() {
     return new Promise<number>((resolve) => {
-      clearInterval(interval);
+      if (interval) clearInterval(interval);
       interval = setInterval(() => {
         if (percent < 100) {
-          percent++;
+          percent = Math.min(100, percent + 8);
           setLoading(percent);
         } else {
-          resolve(percent);
-          clearInterval(interval);
+          done = true;
+          if (interval) clearInterval(interval);
+          resolve(100);
         }
-      }, 2);
+      }, 16);
     });
   }
-  return { loaded, percent, clear };
+
+  return { loaded, percent, clear, destroy };
 };

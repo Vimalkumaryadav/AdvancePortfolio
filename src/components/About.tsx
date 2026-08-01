@@ -6,9 +6,7 @@ const About = () => {
       <div className="about-me">
         <h3 className="title">About Me</h3>
         <p className="para">
-          Automation Engineer with 7 years of experience in web and API testing
-          using Playwright, WebDriverIO, Selenium (Java), Cucumber BDD,
-          Rest Assured and CI/CD execution to reduce manual effort.
+          {`QA Automation Engineer with 7+ years of experience in UI, API, and Performance Testing, specializing in Playwright, Selenium, REST Assured, JMeter, and Gatling. Experienced in building automation frameworks, CI/CD quality gates, production issue analysis, and AI-driven test automation — including GA4, GTM, Kibana, Argo CD, Akamai, and Contentful.`}
         </p>
       </div>
     </div>

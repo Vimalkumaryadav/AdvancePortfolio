@@ -15,28 +15,17 @@ const Career = () => {
           <div className="career-info-box">
             <div className="career-info-in">
               <div className="career-role">
-                <h4>Sr.QA Automation Engineer</h4>
-                <h5>Electronic Arts [Vendor Engagement via Adecco]</h5>
+                <h4>Senior QA Automation Engineer / SE II</h4>
+                <h5>Electronic Arts [via Adecco]</h5>
               </div>
-              <h3>2025 - Present</h3>
+              <h3>2023 – Present</h3>
             </div>
             <p>
-              Performed manual testing for EA Help NextGen platform, APItesting using Postman.
-              Executed automated regression testing using Playwright with JavaScript.
-              Tested AI chatbots and RAG agents, validating search summaries.
-            </p>
-          </div>
-          <div className="career-info-box">
-            <div className="career-info-in">
-              <div className="career-role">
-                <h4>Software Engineer II</h4>
-                <h5>Electronic Arts [TFT]</h5>
-              </div>
-              <h3>2023 - 2025</h3>
-            </div>
-            <p>
-              Designed and implemented a WebDriverIO automation framework, improving regression efficiency by 50%.
-              Optimized automation modules using GitHub Copilot and managed CI/CD executions via Jenkins.
+              Built Playwright (JS) UI/API frameworks automating 500+ cases with
+              parallel runs. Ran Gatling load tests for 1,000+ users, validated
+              200+ REST APIs, and wired suites into GitLab CI/CD. Analyzed
+              production issues via Kibana/Argo CD, and validated GA4/GTM, RAG
+              AI agents, Akamai redirects, Redis sessions, and Contentful CMS.
             </p>
           </div>
           <div className="career-info-box">
@@ -45,11 +34,13 @@ const Career = () => {
                 <h4>Software Engineer</h4>
                 <h5>Wipro Limited</h5>
               </div>
-              <h3>2022 - 2023</h3>
+              <h3>2022 – 2023</h3>
             </div>
             <p>
-              Automated 20+ critical API scenarios using Rest Assured and Selenium.
-              Developed EIT and SIT frameworks to validate APIs in pre-production.
+              Validated 300+ REST APIs with Postman. Built 100+ EIT scripts and
+              150+ SIT scripts using Selenium and Java, cutting integration
+              issues by 30%. Maintained 500+ reports in PractiTest and performed
+              GCP database validation.
             </p>
           </div>
           <div className="career-info-box">
@@ -58,11 +49,12 @@ const Career = () => {
                 <h4>QA Engineer</h4>
                 <h5>Tecra System Pvt Ltd</h5>
               </div>
-              <h3>2018 - 2022</h3>
+              <h3>2018 – 2022</h3>
             </div>
             <p>
-              Built and maintained UI automation frameworks with Selenium (Java), Cucumber BDD, and Maven.
-              Implemented cross-browser testing and reporting via Extent Reports.
+              Delivered 150+ Selenium/Java BDD cases (+65% automation coverage).
+              Managed builds with Maven and Git, produced 100+ Extent Reports,
+              and supported performance testing with 50+ JMeter load scripts.
             </p>
           </div>
         </div>

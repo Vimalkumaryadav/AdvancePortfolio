@@ -90,15 +90,18 @@ const WhatIDo = () => {
               <h3>AUTOMATION</h3>
               <h4>Building Robust Test Frameworks</h4>
               <p>
-                Crafting scalable and reliable automation frameworks for UI and APIs.
-                From cross-browser testing to CI/CD integration, I ensure high-quality releases.
+                Crafting scalable UI, API, and performance automation with
+                Playwright, Selenium, REST Assured, Gatling, and JMeter — from
+                parallel regression suites to CI/CD quality gates.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
                 <div className="what-tags">Playwright</div>
-                <div className="what-tags">WebDriverIO</div>
                 <div className="what-tags">Selenium</div>
                 <div className="what-tags">Rest Assured</div>
+                <div className="what-tags">Gatling</div>
+                <div className="what-tags">JMeter</div>
+                <div className="what-tags">Postman</div>
                 <div className="what-tags">Java</div>
                 <div className="what-tags">JavaScript</div>
                 <div className="what-tags">SQL</div>
@@ -128,18 +131,21 @@ const WhatIDo = () => {
               <h3>TESTING</h3>
               <h4>Quality Assurance & Methodologies</h4>
               <p>
-                Designing comprehensive testing strategies. From BDD implementations to
-                detailed reporting, I maintain high-reliability test suites.
+                End-to-end quality across functional, regression, performance,
+                analytics, CMS, and AI/RAG validation — with strong Agile
+                collaboration and production issue analysis.
               </p>
               <h5>Skillset & tools</h5>
               <div className="what-content-flex">
                 <div className="what-tags">Cucumber BDD</div>
                 <div className="what-tags">TestNG</div>
                 <div className="what-tags">Maven</div>
-                <div className="what-tags">Postman</div>
                 <div className="what-tags">Jenkins</div>
+                <div className="what-tags">GitLab CI/CD</div>
                 <div className="what-tags">Azure DevOps</div>
-                <div className="what-tags">GitLab</div>
+                <div className="what-tags">Kibana</div>
+                <div className="what-tags">Argo CD</div>
+                <div className="what-tags">GA4 / GTM</div>
                 <div className="what-tags">Allure, Extent Reports</div>
               </div>
               <div className="what-arrow"></div>

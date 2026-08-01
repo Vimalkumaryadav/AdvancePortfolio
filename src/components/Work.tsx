@@ -8,32 +8,44 @@ const BASE = import.meta.env.BASE_URL;
 const projects = [
   {
     title: "EA Help NXGEN",
-    category: "Manual & Automation Testing",
-    tools: "Playwright, Postman, Swagger, Gitlab, Jira",
+    category: "UI, API & E2E Testing",
+    tools: "Playwright, Postman, Swagger, GitLab CI/CD, Kibana, Argo CD, Jira",
     image: `${BASE}images/EAHELPWEBSITE.jpg`,
   },
   {
     title: "EA HELP AI Chatbots",
-    category: "AI Evaluation and Load Testing",
-    tools: "Playwright, Gatling, Argo logs, Grafana, DataBase, Gitlab",
+    category: "AI / RAG Evaluation & Load Testing",
+    tools: "Playwright, Gatling, Argo CD, Kibana, Grafana, Database, GitLab",
     image: `${BASE}images/AIBots.jpg`,
   },
   {
+    title: "Gamestats (FC)",
+    category: "UI, Regression, API, E2E, Load Testing & Data Validation",
+    tools: "Playwright, Gatling, Postman, GitLab",
+    image: `${BASE}images/GAMESTATS.png`,
+  },
+  {
+    title: "Loyalty Website",
+    category: "UI, Regression, API, E2E & Load Testing",
+    tools: "Playwright, Gatling, Postman, GitLab",
+    image: `${BASE}images/LOYALTY.png`,
+  },
+  {
     title: "POGO",
-    category: "Regression Suite",
-    tools: "WebDriverIO, Jenkins, Copilot, Perforce",
+    category: "Regression & Feature Testing",
+    tools: "Playwright, Perforce, GitLab, Jenkins",
     image: `${BASE}images/POGO.jpg`,
   },
   {
     title: "Auspost",
-    category: "API Testing",
-    tools: "Rest Assured, Selenium, Postman, Bitbucket, PractiTest",
+    category: "API & Integration Testing",
+    tools: "Rest Assured, Selenium, Postman, Bitbucket, PractiTest, GCP",
     image: `${BASE}images/AUSPOST.jpg`,
   },
   {
     title: "AccuConnect",
-    category: "UI Testing",
-    tools: "Selenium (Java), Cucumber BDD, Maven, Extend Reports",
+    category: "UI Automation (BDD)",
+    tools: "Selenium (Java), Cucumber BDD, Maven, Extent Reports, JMeter",
     image: `${BASE}images/ACCUCONNECT.jpg`,
   },
 ];
@@ -72,71 +84,66 @@ const Work = () => {
         </h2>
 
         <div className="carousel-wrapper">
-          {/* Navigation Arrows */}
-          <button
-            className="carousel-arrow carousel-arrow-left"
-            onClick={goToPrev}
-            aria-label="Previous project"
-            data-cursor="disable"
-          >
-            <MdArrowBack />
-          </button>
-          <button
-            className="carousel-arrow carousel-arrow-right"
-            onClick={goToNext}
-            aria-label="Next project"
-            data-cursor="disable"
-          >
-            <MdArrowForward />
-          </button>
-
-          {/* Slides */}
-          <div className="carousel-track-container">
-            <div
-              className="carousel-track"
-              style={{
-                width: `${projects.length * 100}%`,
-                transform: `translateX(-${(currentIndex * 100) / projects.length}%)`,
-              }}
+          <div className="carousel-stage">
+            <button
+              className="carousel-arrow carousel-arrow-left"
+              onClick={goToPrev}
+              aria-label="Previous project"
+              data-cursor="disable"
             >
-              {projects.map((project, index) => (
-                <div 
-                  className="carousel-slide" 
-                  key={index}
-                  style={{ width: `${100 / projects.length}%`, minWidth: 'unset' }}
-                >
-                  <div className="carousel-content">
-                    <div className="carousel-info">
-                      <div className="carousel-number">
-                        <h3>0{index + 1}</h3>
-                      </div>
-                      <div className="carousel-details">
-                        <h4>{project.title}</h4>
-                        <p className="carousel-category">
-                          {project.category}
-                        </p>
-                        <div className="carousel-tools">
-                          <span className="tools-label">Tools & Features</span>
-                          <p>{project.tools}</p>
+              <MdArrowBack />
+            </button>
+            <button
+              className="carousel-arrow carousel-arrow-right"
+              onClick={goToNext}
+              aria-label="Next project"
+              data-cursor="disable"
+            >
+              <MdArrowForward />
+            </button>
+
+            <div className="carousel-track-container">
+              <div
+                className="carousel-track"
+                style={{
+                  transform: `translateX(-${currentIndex * 100}%)`,
+                }}
+              >
+                {projects.map((project, index) => (
+                  <div className="carousel-slide" key={index}>
+                    <div className="carousel-content">
+                      <div className="carousel-info">
+                        <div className="carousel-number">
+                          <h3>{String(index + 1).padStart(2, "0")}</h3>
+                        </div>
+                        <div className="carousel-details">
+                          <h4>{project.title}</h4>
+                          <p className="carousel-category">
+                            {project.category}
+                          </p>
+                          <div className="carousel-tools">
+                            <span className="tools-label">Tools & Features</span>
+                            <p>{project.tools}</p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="carousel-image-wrapper">
-                      <WorkImage image={project.image} alt={project.title} />
+                      <div className="carousel-image-wrapper">
+                        <WorkImage image={project.image} alt={project.title} />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* Dot Indicators */}
           <div className="carousel-dots">
             {projects.map((_, index) => (
               <button
                 key={index}
-                className={`carousel-dot ${index === currentIndex ? "carousel-dot-active" : ""
-                  }`}
+                className={`carousel-dot ${
+                  index === currentIndex ? "carousel-dot-active" : ""
+                }`}
                 onClick={() => goToSlide(index)}
                 aria-label={`Go to project ${index + 1}`}
                 data-cursor="disable"

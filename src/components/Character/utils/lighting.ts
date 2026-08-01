@@ -3,6 +3,8 @@ import { RGBELoader } from "three-stdlib";
 import { gsap } from "gsap";
 
 const setLighting = (scene: THREE.Scene) => {
+  let lightsOn = false;
+
   const directionalLight = new THREE.DirectionalLight(0x5eead4, 0);
   directionalLight.intensity = 0;
   directionalLight.position.set(-0.47, -0.32, -1);
@@ -23,7 +25,8 @@ const setLighting = (scene: THREE.Scene) => {
     .load("char_enviorment.hdr?v=2", function (texture) {
       texture.mapping = THREE.EquirectangularReflectionMapping;
       scene.environment = texture;
-      scene.environmentIntensity = 0;
+      // Preserve intensity if intro already turned lights on
+      scene.environmentIntensity = lightsOn ? 0.64 : 0;
       scene.environmentRotation.set(5.76, 85.85, 1);
     });
 
@@ -37,6 +40,7 @@ const setLighting = (scene: THREE.Scene) => {
   const duration = 2;
   const ease = "power2.inOut";
   function turnOnLights() {
+    lightsOn = true;
     gsap.to(scene, {
       environmentIntensity: 0.64,
       duration: duration,

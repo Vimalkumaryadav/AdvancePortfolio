@@ -283,15 +283,25 @@
     width: 380px;
   }
 }
+@media only screen and (max-width: 900px) {
+  .social-icons {
+    /* Keep social icons from covering section content while scrolling */
+    opacity: 0.85;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   .whatIDO {
     height: auto;
     padding: 50px 0px;
     padding-bottom: 50px;
+    overflow: hidden;
   }
   .what-box-in {
-    height: 500px;
-    margin-left: -50px;
+    display: flex !important;
+    height: auto;
+    min-height: 420px;
+    margin-left: 0;
   }
   .what-content {
     padding: 50px;

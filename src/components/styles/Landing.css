@@ -17,7 +17,7 @@
 .landing-circle1 {
   top: 0%;
   left: 0%;
-  z-index: 15;
+  z-index: 0;
   position: fixed;
   width: 300px;
   height: 300px;
@@ -26,6 +26,7 @@
   filter: blur(60px);
   border-radius: 50%;
   animation: loadingCircle 5s linear infinite;
+  pointer-events: none;
 }
 
 .nav-fade {
@@ -56,7 +57,7 @@
   top: 50%;
   right: 0%;
   transform: translate(calc(100% - 2px), -50%);
-  z-index: 9;
+  z-index: 0;
   position: fixed;
   display: none;
   width: 300px;
@@ -66,6 +67,7 @@
   filter: blur(50px);
   border-radius: 50%;
   animation: loadingCircle2 5s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes loadingCircle2 {
@@ -95,7 +97,6 @@
   height: 400px;
   z-index: 1;
   background-color: #22d3ee;
-  transform: translate(-50%, 36%) scaleX(1.4);
   box-shadow: inset 66px 35px 85px 0px rgba(0, 180, 180, 0.65);
   filter: blur(50px);
   border-radius: 50%;
@@ -192,10 +193,6 @@
   font-family: "Geist", sans-serif;
 }
 
-/* .landing-intro h1 span {
-   font-weight: 200; 
-} */
-
 .landing-info {
   position: absolute;
   right: 50%;
@@ -260,6 +257,86 @@ h2.landing-info-h2 {
       rgba(0, 0, 0, 0) 110%);
   top: 0;
   left: 0;
+}
+
+/* Mobile / tablet: text-only landing (no 3D character) */
+@media screen and (max-width: 1024px) {
+  .landing-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100svh;
+    height: auto;
+    padding: 88px 0 100px;
+    box-sizing: border-box;
+  }
+
+  .landing-container {
+    width: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .landing-intro {
+    position: relative;
+    top: auto;
+    left: auto;
+    padding: 0 4px;
+  }
+
+  .landing-intro h2 {
+    font-size: 16px;
+  }
+
+  .landing-intro h1 {
+    font-size: 32px;
+    line-height: 34px;
+  }
+
+  .landing-info {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    text-align: left;
+    padding: 0 4px;
+  }
+
+  .landing-info h3 {
+    font-size: 15px;
+  }
+
+  .landing-info h2 {
+    margin-left: 8px;
+    margin-top: -6px;
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  h2.landing-info-h2 {
+    font-size: 34px;
+    width: auto;
+    margin-left: 0;
+  }
+
+  .landing-h2-2,
+  .landing-h2-info,
+  .landing-h2-info-1,
+  .landing-info > h2:not(.landing-info-h2) {
+    display: none !important;
+  }
+
+  .landing-info-h2::after {
+    display: none;
+  }
+
+  .character-container,
+  .character-model {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 500px) {

@@ -68,7 +68,14 @@ const SocialIcons = () => {
           </a>
         </span>
       </div>
-      <a className="resume-button" href="#">
+      <a
+        className="resume-button"
+        href={`${import.meta.env.BASE_URL}Vimal_Kumar_Yadav_Resume.pdf`}
+        download="Vimal_Kumar_Yadav_Resume.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-cursor="disable"
+      >
         <HoverLinks text="RESUME" />
         <span>
           <TbNotes />

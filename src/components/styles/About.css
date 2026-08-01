@@ -8,6 +8,8 @@
   height: auto;
   width: var(--cWidth);
   margin: auto;
+  padding-top: 40px;
+  z-index: 2;
 }
 .about-me {
   padding: 50px 0px;
@@ -24,15 +26,33 @@
 }
 
 .about-me p {
-  font-size: 33px;
+  font-size: 22px;
   font-weight: 600;
-  line-height: 36px;
+  line-height: 1.35;
   letter-spacing: 1px;
+  margin: 0;
+}
+
+/* Word-split animation must not invent extra line gaps */
+.about-me .para {
+  text-wrap: pretty;
+}
+.about-me .para > div,
+.about-me .para .split-line {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  line-height: inherit;
 }
 
 @media only screen and (min-width: 600px) {
   .about-section {
     justify-content: center;
+  }
+  .about-me p {
+    font-size: 28px;
+    line-height: 1.35;
   }
 }
 @media only screen and (min-width: 768px) {
@@ -43,6 +63,10 @@
   }
   .about-section {
     opacity: 1;
+  }
+  .about-me p {
+    font-size: 33px;
+    line-height: 1.35;
   }
 }
 @media only screen and (min-width: 1025px) {
@@ -60,12 +84,12 @@
   }
   .about-me p {
     font-size: 1.9vw;
-    line-height: 2.3vw;
+    line-height: 1.35;
   }
 }
 @media only screen and (min-width: 1950px) {
   .about-me p {
     font-size: 2.5rem;
-    line-height: 2.7rem;
+    line-height: 1.35;
   }
 }
